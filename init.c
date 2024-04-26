@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:12:27 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/04/26 16:30:43 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:23:17 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,20 @@ int	loop_initialize_philo(t_main *main, t_philo *philo)
 			return (1);
 		if (pthread_mutex_init(philo[i].fork_right, NULL) != 0)
 			return (printf("mutex init failed"), 1);
+		philo[i].R_is_unlocked = true;
+		printf("Risunlocked=%d", philo[i].R_is_unlocked);
 		if (i == 0)
+		{
 			philo[i].fork_left = &philo[main->nb_philo - 1].fork_right;
+			*(philo[i].L_is_unlocked) = philo[main->nb_philo - 1].R_is_unlocked;
+			printf("Lisunlocked=%d", *(philo[i].L_is_unlocked));
+		}
 		else
+		{
 			philo[i].fork_left = &philo[i - 1].fork_right;
+			*(philo[i].L_is_unlocked) = philo[i - 1].R_is_unlocked;
+			printf("Lisunlocked=%d", *(philo[i].L_is_unlocked));
+		}
 	}
 	return (0);
 }

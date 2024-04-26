@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:15:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/04/26 16:45:40 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:07:08 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_deaths(t_philo *philo)
 		return (pthread_mutex_unlock(philo->main->death), 1);
 	}
 	pthread_mutex_unlock(philo->main->death);
-	return (0);
+	return (printf("%lld %d still ok\n", get_time(), philo->id), 0);
 }
 
 void	*routine(void *arg)

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 10:57:12 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/04/26 16:45:32 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:21:42 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+#include <stdbool.h>
 
 // 1 philosopher
 typedef struct s_main
@@ -43,7 +44,8 @@ typedef struct s_philo
 	t_main			*main;
 	pthread_mutex_t	*fork_right;
 	pthread_mutex_t	**fork_left;
-
+	bool			R_is_unlocked;
+	bool			*L_is_unlocked;
 }					t_philo;
 
 // init.c

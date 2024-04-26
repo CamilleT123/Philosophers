@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:52:34 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/04/26 15:40:23 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:16:30 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	eating(t_philo *philo)
 		return (1);
 	pthread_mutex_lock(philo->fork_right);
 	pthread_mutex_lock(*(philo->fork_left));
+	
 	if (check_deaths(philo) != 0)
 		return (pthread_mutex_unlock(philo->fork_right),
 			pthread_mutex_unlock(*(philo->fork_left)), 1);
