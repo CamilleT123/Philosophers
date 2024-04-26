@@ -6,8 +6,9 @@ CFLAGS	= -Wall -Wextra -Werror -g
 
 SRC		= main.c \
 		init.c \
-		routine.c \
 		thread.c \
+		routine.c \
+		activities.c \
 		utils.c
 
 OBJ		:= $(SRC:.c=.o)
