@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 16:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/04/30 17:55:41 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:33:57 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_philo
 {
 	int				id;
 	int				nb_meals;
 	int				last_meal;
-	pthread_mutex_t	*fork_right;
-	pthread_mutex_t	**fork_left;
+	pthread_mutex_t	fork_right;
+	pthread_mutex_t	*fork_left;
+	bool			left_available;
 	pthread_mutex_t	meal;
 	struct s_main	*main;
 }					t_philo;
@@ -43,6 +45,8 @@ typedef struct s_main
 	int				finished_loops;
 	long long int	start_time;
 	pthread_mutex_t	death;
+	pthread_mutex_t	loops;
+	pthread_mutex_t	print;
 }					t_main;
 
 // init.c
@@ -62,7 +66,9 @@ int				eating(t_philo *philo);
 int				sleeping(t_philo *philo, int time_to_sleep, int philo_no);
 
 // utils.c
+int				ft_sleep(t_philo *philo, int time_to_sleep);
 long long int	get_time(void);
 int				timestamp(t_main *main);
+long long int	ft_atoi(const char *nptr);
 
 #endif
